@@ -1,0 +1,33 @@
+{
+    "name": "haowanxing/matchyou",
+    "description":  "Common Regular Matching Tools",
+    "keywords": ["regexp"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anthony.liu",
+            "email": "smoothest@yeah.net",
+            "homepage": "https://github.com/haowanxing",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    },
+    "autoload": {
+        "classmap": [
+           
+        ],
+        "psr-4": {
+            "haowanxing\\matchyou\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "haowanxing\\matchyou\\Tests\\": "tests/"
+        }
+    }
+}
