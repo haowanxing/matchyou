@@ -1,4 +1,6 @@
-# MatchYou
+# MatchYou [![Build Status](https://travis-ci.org/haowanxing/matchyou.svg?branch=master)](https://travis-ci.org/haowanxing/matchyou)
+
+Common Regular Matching Tools
 
 ## License
 
