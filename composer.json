@@ -22,12 +22,12 @@
            
         ],
         "psr-4": {
-            "haowanxing\\matchyou\\": "src/"
+            "matchYou\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "haowanxing\\matchyou\\Tests\\": "tests/"
+            "matchYou\\Tests\\": "tests/"
         }
     }
 }
