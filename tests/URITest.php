@@ -47,6 +47,15 @@ final class URITest extends TestCase
             'http://www.baidu.com/random?=131',
             'http://google.com/gen_204?from=http://www.baidu.com'
         ];
+        $ftp = [
+            'ftp://admin:1234@10.10.10.10',
+            'ftp://admin:1234@10.10.10.10/profile',
+            'ftp://admin:@10.10.10.10',
+            'ftp://admin:1234@abc.com.cn',
+            'ftp://abc.com.cn/private',
+            'ftp://abc.com.cn:21/private',
+            'ftp://admin:1234@10.10.10.10:383/profile',
+        ];
         foreach ($https as $url) {
             $one = URI::isHttpsUrl($url);
             $this->assertTrue($one, 'HttpsURL not match:' . $url);
@@ -58,6 +67,14 @@ final class URITest extends TestCase
             $this->assertTrue($one, 'HttpURL not match:' . $url);
             $two = URI::isHttpsUrl($url);
             $this->assertFalse($two, 'HttpURL match:' . $url);
+        }
+        foreach ($ftp as $url) {
+            $one = URI::isFtpUrl($url);
+            $this->assertTrue($one, 'FtpURL not match:' . $url);
+            $two = URI::isHttpUrl($url);
+            $this->assertFalse($two, 'HttpURL match:' . $url);
+            $two = URI::isHttpsUrl($url);
+            $this->assertFalse($two, 'HttpsURL match:' . $url);
         }
     }
 

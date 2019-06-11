@@ -16,6 +16,7 @@ class URI extends Match
     protected static $url = '/^((http:\/\/)|(https:\/\/)|(ftp:\/\/))?[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]?\.)+[a-zA-Z]{2,6}(\/)/i';
     protected static $httpsUrl = '/^https:\/\/[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]?\.)+[a-zA-Z]{2,6}(\/)/i';
     protected static $httpUrl = '/^http:\/\/[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]?\.)+[a-zA-Z]{2,6}(\/)/i';
+    protected static $ftpUrl = '/^ftp:\/\/(.*:.*)?(((?=(\b|\D))(((\d{1,2})|(1\d{1,2})|(2[0-4]\d)|(25[0-5]))\.){3}((\d{1,2})|(1\d{1,2})|(2[0-4]\d)|(25[0-5]))(?=(\b|\D)))|([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]?\.)+[a-zA-Z]{2,6}))(:\d)?(\/.*)?/';
     protected static $ip4Address = '/(?=(\b|\D))(((\d{1,2})|(1\d{1,2})|(2[0-4]\d)|(25[0-5]))\.){3}((\d{1,2})|(1\d{1,2})|(2[0-4]\d)|(25[0-5]))(?=(\b|\D))/';
     protected static $ip6Address = '/^([\\da-fA-F]{1,4}:){7}([\\da-fA-F]{1,4})$/';
 
@@ -37,6 +38,11 @@ class URI extends Match
     public static function isHttpsUrl($str)
     {
         return self::isMatch($str, self::$httpsUrl);
+    }
+
+    public static function isFtpUrl($str)
+    {
+        return self::isMatch($str, self::$ftpUrl);
     }
 
     public static function isIpv4($str)
