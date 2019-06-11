@@ -31,5 +31,10 @@ final class HumanTest extends TestCase
         $info = IDCard::exportIDCardInfo($id);
         $this->assertNotFalse($info);
         var_dump($info);
+
+        $id = '430822940226002';
+        $info = IDCard::exportIDCardInfo($id);
+        $this->assertNotFalse($info);
+        var_dump($info);
     }
 }

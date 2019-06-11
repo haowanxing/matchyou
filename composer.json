@@ -13,7 +13,8 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "ext-bcmath": "*"
+        "ext-bcmath": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable"
