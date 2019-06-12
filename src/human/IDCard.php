@@ -13,6 +13,7 @@ use matchYou\Match;
 class IDCard extends Match
 {
     protected static $idCard = '/[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0-2]\d)|(3[0-1]))\d{3}[\dxX]{1}/';
+    protected static $idCard1G = '/[1-9]\d{5}\d{2}((0\d)|(1[0-2]))(([0-2]\d)|(3[0-1]))\d{3}/';
 
     private static function calcCheckCode($str)
     {
@@ -28,6 +29,11 @@ class IDCard extends Match
         $y = bcmod($sum, 11);
         $verify = $code[$y];
         return $verify;
+    }
+
+    public static function isIDCard1G($str)
+    {
+        return self::isMatch($str, self::$idCard1G);
     }
 
     public static function isIDCard2G($str)
