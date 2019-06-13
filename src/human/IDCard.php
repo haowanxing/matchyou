@@ -24,7 +24,7 @@ class IDCard extends Match
         for ($i = 2; $i < 19; $i++){
             $index = 18 - $i;
             $a = $ids[$index] == 'X'?10:$ids[$index];
-            $sum += $a * bcmod(pow(2, $i-1),11);
+            $sum += $a * bcmod(2<<$i-2,11);
         }
         $y = bcmod($sum, 11);
         $verify = $code[$y];
