@@ -58,7 +58,7 @@ class IDCard extends Match
     }
 
     public static function exportIDCardInfo($str){
-        if(15 === strlen($str)) $str = self::transferTo2G($str);
+        if(self::isIDCard1G($str)) $str = self::transferTo2G($str);
         if(!self::isIDCard2G($str)){
             return false;
         }
