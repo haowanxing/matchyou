@@ -13,15 +13,13 @@ use matchYou\CanMatching;
 
 class IPv4 extends ExpAbs implements CanMatching, CanExtracting
 {
-    private $exp = '(?=(\b|\D))(((\d{1,2})|(1\d{1,2})|(2[0-4]\d)|(25[0-5]))\.){3}((\d{1,2})|(1\d{1,2})|(2[0-4]\d)|(25[0-5]))(?=(\b|\D))';
-
     /**
      * @param $obj
      * @return bool
      */
     public function match($obj)
     {
-        return $this->isMatch($obj, $this->patternPackES($this->exp));
+        return $this->isMatch($obj, $this->patternPackES($this->IPv4Exp));
     }
 
     /**
@@ -30,6 +28,6 @@ class IPv4 extends ExpAbs implements CanMatching, CanExtracting
      */
     public function extract($obj)
     {
-        return $this->pickUp($obj, $this->pattern($this->exp));
+        return $this->pickUp($obj, $this->pattern($this->IPv4Exp));
     }
 }

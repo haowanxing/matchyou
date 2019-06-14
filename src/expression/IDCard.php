@@ -13,8 +13,6 @@ use matchYou\CanMatching;
 
 class IDCard extends ExpAbs implements CanMatching, CanExtracting
 {
-    private $idCard2G = '[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0-2]\d)|(3[0-1]))\d{3}[\dxX]{1}';
-    private $idCard1G = '[1-9]\d{5}\d{2}((0\d)|(1[0-2]))(([0-2]\d)|(3[0-1]))\d{3}';
 
     /**
      * @param $str
@@ -35,8 +33,8 @@ class IDCard extends ExpAbs implements CanMatching, CanExtracting
     public function extract($obj)
     {
         $ret = [];
-        $one = $this->pickUp($obj, $this->pattern($this->idCard1G));
-        $two = $this->pickUp($obj, $this->pattern($this->idCard2G));
+        $one = $this->pickUp($obj, $this->pattern($this->idCard1GExp));
+        $two = $this->pickUp($obj, $this->pattern($this->idCard2GExp));
         $data = array_merge($one, $two);
         if(!empty($data)){
             foreach ($data as $v){
@@ -52,11 +50,11 @@ class IDCard extends ExpAbs implements CanMatching, CanExtracting
     }
 
     public function isIDCard1G($str){
-        return $this->isMatch($str, $this->pattern($this->idCard1G));
+        return $this->isMatch($str, $this->pattern($this->idCard1GExp));
     }
 
     public function isIDCard2G($str){
-        if($this->isMatch($str, $this->pattern($this->idCard2G))){
+        if($this->isMatch($str, $this->pattern($this->idCard2GExp))){
             $str = strtoupper($str);
             $security = substr($str, 17, 1);
             $verify = $this->calcCheckCode($str);

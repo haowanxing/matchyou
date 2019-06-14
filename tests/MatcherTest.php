@@ -9,11 +9,14 @@ declare(strict_types=1);
 namespace matchYou\Tests;
 
 
+use matchYou\expression\Chinese;
 use matchYou\expression\Domain;
 use matchYou\expression\Email;
 use matchYou\expression\IDCard;
 use matchYou\expression\IPv4;
 use matchYou\expression\IPv6;
+use matchYou\expression\MobilePhone;
+use matchYou\expression\Telephone;
 use matchYou\expression\URL;
 use matchYou\My;
 use PHPUnit\Framework\TestCase;
@@ -32,7 +35,16 @@ smoothest@yeah.net,haowanxing@163.com,admin@imsry.cn,anthony.liu@wiwide.com.cn,f
 
 路由器地址一般为：192.168.1.1 192.168.0.1 192.168.123.1
 公网地址：59.68.31.220
-完整的下一代IP地址类似于 AD80:0000:0000:0000:ABAA:0000:00C2:0002 而非完整的有 fe80::1cb8:ffff:fe9f:2e89 这样的
+完整的下一代IP地址类似于 AD80:0000:0000:0000:ABAA:0000:00C2:0002 而非完整的有 fe80::1cb8:ffff:fe9f:2e89 这样的不匹配
+
+Please tell us: +86 18907657877,+86-13109450099,013177886666
+
+联系我们 400-672-8166 support@dahuatech.com 杭州市滨江区滨安路1199号
+办公室：　管丹　柳斌　　办公电话：027-67842525（传真）、027-67843843
+理论教育科：　余凤（主任科员）　蓝永丽　杨科　　办公电话：027-67843126
+网络新媒体宣传科：　刘虹　　办公电话：67843845
+校报编辑部：　黄宗贵（四级职员）　刘琼（科长）　陈鹏冰　冯珊珊　　办公电话：027-67843799、027-67842546
+010-62151599,400-6500-311
 EOF;
     private $test = [
         'domain'=>[
@@ -71,6 +83,30 @@ EOF;
             'fe80::4dc:94e9:53a8:3a36',
             'fe80::1cb8:ffff:fe9f:2e89'
         ],
+        'mobile'=>[
+            '13308768888',
+            '13189798978',
+            '13576598789',
+            '14490987787',
+            '15109988976',
+            '17788779900',
+            '18908763421',
+            '19108443231',
+            '+86-15576889999',
+            '8613344445555',
+            '+86 13454545432'
+        ],
+        'telephone'=>[
+          '010-66776767',
+          '0744-6226037',
+          '021-56115566-3',
+          '027-61897876',
+          '0399-889912345'
+        ],
+        'chinese'=>[
+            '你好',
+            '不管这些是啥子饕餮踽踽独行醍醐灌顶'
+        ],
     ];
 
     public function testCanApplyMatcher()
@@ -103,6 +139,7 @@ EOF;
         }
         $b = My::extractor(Email::class);
         $rs = $b->extract($this->content);
+//        var_dump($rs);
         $this->assertNotEmpty($rs);
     }
 
@@ -137,7 +174,41 @@ EOF;
         }
         $b = My::extractor(IPv6::class);
         $rs = $b->extract($this->content);
-        var_dump($rs);
+        $this->assertNotEmpty($rs);
+    }
+
+    public function testCanExpMobile()
+    {
+        $a = My::matcher(MobilePhone::class);
+        foreach ($this->test['mobile'] as $v){
+            $this->assertTrue($a->match($v), "$v is not MobilePhone");
+        }
+        $b = My::extractor(MobilePhone::class);
+        $rs = $b->extract($this->content);
+        $this->assertNotEmpty($rs);
+    }
+
+    public function testCanExpTelephone()
+    {
+        $a = My::matcher(Telephone::class);
+        foreach ($this->test['telephone'] as $v){
+            $this->assertTrue($a->match($v), "$v is not Telephone");
+        }
+        $b = My::extractor(Telephone::class);
+        $rs = $b->extract($this->content);
+//        var_dump($rs);
+        $this->assertNotEmpty($rs);
+    }
+
+    public function testCanExpChinese()
+    {
+        $a = My::matcher(Chinese::class);
+        foreach ($this->test['chinese'] as $v){
+            $this->assertTrue($a->match($v), "$v is not Chinese");
+        }
+        $b = My::extractor(Chinese::class);
+        $rs = $b->extract($this->content);
+//        var_dump($rs);
         $this->assertNotEmpty($rs);
     }
 }

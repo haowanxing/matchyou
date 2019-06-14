@@ -14,8 +14,6 @@ use matchYou\common\Tool;
 
 class IPv6 extends ExpAbs implements CanMatching, CanExtracting
 {
-    private $exp = '([\\da-fA-F]{1,4}:){7}([\\da-fA-F]{1,4})';
-
     /**
      * @param $str
      * @return bool
@@ -24,7 +22,7 @@ class IPv6 extends ExpAbs implements CanMatching, CanExtracting
     {
         $idx = strpos($str, '::');
         if ($idx === false){
-            return $this->isMatch($str, $this->patternPackES($this->exp));
+            return $this->isMatch($str, $this->patternPackES($this->IPv6Exp));
         }else{
             // there is two "::"
             if($idx !== strrpos($str, '::')){
@@ -56,6 +54,6 @@ class IPv6 extends ExpAbs implements CanMatching, CanExtracting
      */
     public function extract($obj)
     {
-        return $this->pickUp($obj, $this->pattern($this->exp));
+        return $this->pickUp($obj, $this->pattern($this->IPv6Exp));
     }
 }
