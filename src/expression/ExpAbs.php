@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
+ * 正则匹配抽象类
  * User: anthony
  * Date: 2019-06-14 10:07
  */
@@ -20,6 +20,11 @@ abstract class ExpAbs
     protected $IPv6Exp = '([\\da-fA-F]{1,4}:){7}([\\da-fA-F]{1,4})';
     protected $mobilePhoneExp = '(?:(?:\+|00)?86[- ]?)?0?1[3-57-9][0-9]{9}';
     protected $telephoneExp = '(:?(?:010|02\d{1}|0[3-9]\d{2})-\d{7,9}(?:-\d+)?)|(:?400(-\d{3,4}){2})';
+    protected $englishOnlyExp = '[A-Za-z]+';
+    protected $englishAndNumbersExp = '[A-Za-z0-9]+';
+    protected $capitalLetterOnlyExp = '[A-Z]+';
+    protected $lowerLetterOnlyExp = '[a-z]+';
+    protected $goodAccountExp = '[a-zA-Z][A-Za-z0-9_]{4,15}';
 
 
     /**
