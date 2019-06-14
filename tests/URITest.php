@@ -14,6 +14,11 @@ use PHPUnit\Framework\TestCase;
 
 final class URITest extends TestCase
 {
+    private $content = <<<EOF
+Content contains URL: "http://www.adobe.com/thanks.asp" Please click!
+ and http://www.google.com/go.lang-.html?a=3&b=3# like you
+EOF;
+
     public function testCanMatchDomain()
     {
         $domains = [
@@ -26,6 +31,9 @@ final class URITest extends TestCase
             $one = URI::isDomain($value);
             $this->assertTrue($one, 'Domain not match:' . $value);
         }
+        $match = URI::pickDomain($this->content);
+        var_dump($match);
+        $this->assertNotEmpty($match);
     }
 
     public function testCanMatchURL()
@@ -76,6 +84,8 @@ final class URITest extends TestCase
             $two = URI::isHttpsUrl($url);
             $this->assertFalse($two, 'HttpsURL match:' . $url);
         }
+        $match = URI::pickUrl($this->content);
+        var_dump($match);
     }
 
     public function testCanMatchIP()
@@ -100,6 +110,22 @@ final class URITest extends TestCase
         foreach ($ipv6s as $ip) {
             $one = URI::isIpv6($ip);
             $this->assertTrue($one, 'IPv6 not match:' . $ip);
+        }
+    }
+
+    public function testCanMatchEmail()
+    {
+        $emails = [
+            'smoothest@yeah.net',
+            'anthony.liu@wiwide.cn',
+            '909047801@qq.com',
+            'hello_world@example.com.cn',
+            'find-me_in-this.room@you.will.love.in'
+        ];
+
+        foreach ($emails as $email){
+            $rs = URI::isEmail($email);
+            $this->assertTrue($rs, 'Email not match:' . $email);
         }
     }
 }

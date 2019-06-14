@@ -8,14 +8,41 @@
 namespace matchYou;
 
 
-class Match
+abstract class Match
 {
-    public static function isMatch($obj, $pattern)
+    protected static function isMatch($obj, $pattern)
     {
-        if (preg_match($pattern, $obj)){
+        if (preg_match($pattern, $obj)) {
             return true;
         }
         return false;
+    }
+
+    protected static function pickUp($obj, $pattern)
+    {
+        $matches = [];
+        $ok = preg_match_all($pattern, $obj, $matches);
+        return $ok?$matches[0]:[];
+    }
+
+    protected static function pattern($p, $o = '')
+    {
+        return '/'.$p.'/'.$o;
+    }
+
+    protected static function patternPackES($p, $o = '')
+    {
+        return self::pattern('^'.$p.'$', $o);
+    }
+
+    protected static function patternPackE($p, $o = '')
+    {
+        return self::pattern($p.'$', $o);
+    }
+
+    protected static function patternPackS($p, $o = '')
+    {
+        return self::pattern('^'.$p, $o);
     }
 
     /**
@@ -26,7 +53,7 @@ class Match
      */
     public static function isHex($obj, $len = 4)
     {
-        if (strlen($obj) < 1 || strlen($obj) > $len){
+        if (strlen($obj) < 1 || strlen($obj) > $len) {
             return false;
         }
         $zero = ord('0');
@@ -34,9 +61,9 @@ class Match
         $alpha = ord('A');
         $fire = ord('F');
         $items = str_split(strtoupper($obj));
-        foreach ($items as $item){
+        foreach ($items as $item) {
             $ascii = ord($item);
-            if (!($ascii >= $zero && $ascii <= $nine) && !($ascii >= $alpha && $ascii <= $fire)){
+            if (!($ascii >= $zero && $ascii <= $nine) && !($ascii >= $alpha && $ascii <= $fire)) {
                 return false;
             }
         }
