@@ -20,7 +20,7 @@ class Email extends ExpAbs implements CanMatching, CanExtracting
      */
     public function match($obj)
     {
-        return $this->isMatch($obj, $this->patternPackES($this->emailExp));
+        return $this->isMatch($obj, $this->patternPackES($this->emailExp,'u'));
     }
 
     /**
@@ -29,6 +29,6 @@ class Email extends ExpAbs implements CanMatching, CanExtracting
      */
     public function extract($obj)
     {
-        return $this->pickUp($obj, $this->pattern($this->emailExp));
+        return $this->pickUp($obj, $this->pattern($this->emailExp,'u'));
     }
 }
