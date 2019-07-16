@@ -12,7 +12,7 @@ abstract class ExpAbs
 {
     protected $domainExp = '[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]?\.)+[a-zA-Z]{2,6}';
     protected $urlExp = '(?:(?:http:\/\/)|(?:https:\/\/)|(?:ftp:\/\/))?[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]?\.)+[a-zA-Z]{2,6}[a-zA-Z0-9\-\.\!\*\'\(\);_\:@&=+$,\/\?#\[\]]*';
-    protected $emailExp = '[A-Za-z0-9\-\._\u4e00-\u9fa5]+@[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]?\.)+[a-zA-Z]{2,6}';
+    protected $emailExp = '[A-Za-z0-9\-\._\x{4e00}-\x{9fa5}]+@[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]?\.)+[a-zA-Z]{2,6}';
     protected $chineseExp = '[\x{4e00}-\x{9fa5}]+';
     protected $idCard2GExp = '[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0-2]\d)|(3[0-1]))\d{3}[\dxX]{1}';
     protected $idCard1GExp = '[1-9]\d{5}\d{2}((0\d)|(1[0-2]))(([0-2]\d)|(3[0-1]))\d{3}';
