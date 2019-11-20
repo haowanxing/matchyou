@@ -31,7 +31,7 @@ and http://www.google.com/go.lang-.html?a=3&b=3# like you
 410822880912013,430822840216015
 
 相关邮箱你可以看到：
-smoothest@yeah.net,haowanxing@163.com,admin@imsry.cn,anthony.liu@wiwide.com.cn,find_me-in_this.room@you.will.love.me
+smoothest@yeah.net,haowanxing@163.com,admin@imsry.cn,anthony.liu@wiwiaide.com.cn,find_me-in_this.room@you.will.love.me
 
 路由器地址一般为：192.168.1.1 192.168.0.1 192.168.123.1
 公网地址：59.68.31.220
@@ -59,7 +59,7 @@ EOF;
         ],
         'email'=>[
             'smoothest@yeah.net',
-            'anthony.liu@wiwide.cn',
+            'anthony.liu@wiwiaide.cn',
             '909047801@qq.com',
             'hello_world@example.com.cn',
             'find-me_in-this.room@you.will.love.in'
